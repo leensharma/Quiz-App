@@ -5,15 +5,12 @@ const config = require("./config/key");
 const mongoose = require("mongoose");
 const app = express();
 const connect = mongoose
-  .connect(
-    "mongodb+srv://admin-leen:Test123@cluster0-3nyoy.mongodb.net/quizDB?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    }
-  )
+  .connect(config.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
