@@ -3,9 +3,14 @@ import "./Quiz.css";
 
 const Quiz = (props) => {
   const data = props.location.data;
+  if (data === undefined) {
+    props.history.push("/");
+  }
+
   console.log(data.data.result[0]);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(1);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const handleButtonClickOne = () => {
@@ -15,7 +20,7 @@ const Quiz = (props) => {
     ) {
       setScore(score + 1);
     }
-
+    setQuestionNumber(questionNumber + 1);
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < data.data.result.length) {
       setCurrentQuestion(nextQuestion);
@@ -30,7 +35,7 @@ const Quiz = (props) => {
     ) {
       setScore(score + 1);
     }
-
+    setQuestionNumber(questionNumber + 1);
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < data.data.result.length) {
       setCurrentQuestion(nextQuestion);
@@ -45,7 +50,7 @@ const Quiz = (props) => {
     ) {
       setScore(score + 1);
     }
-
+    setQuestionNumber(questionNumber + 1);
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < data.data.result.length) {
       setCurrentQuestion(nextQuestion);
@@ -60,7 +65,7 @@ const Quiz = (props) => {
     ) {
       setScore(score + 1);
     }
-
+    setQuestionNumber(questionNumber + 1);
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < data.data.result.length) {
       setCurrentQuestion(nextQuestion);
@@ -80,7 +85,7 @@ const Quiz = (props) => {
         <>
           <div className="question-section">
             <div className="question-count">
-              <span>Question 1</span>/{data.data.result.length}
+              <span>Question {questionNumber}</span>/{data.data.result.length}
             </div>
             <div className="question-text">
               {data.data.result[currentQuestion].question}
